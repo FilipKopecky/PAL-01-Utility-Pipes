@@ -9,6 +9,7 @@ class Node implements Comparable<Node> {
     public int cost;
     public Node predecessor;
     public boolean undecided;
+    public Node hub;
 
 
     // Constructors of this class
@@ -25,28 +26,11 @@ class Node implements Comparable<Node> {
         this.cost = cost;
         this.undecided = false;
         this.predecessor=null;
+        this.hub=null;
     }
 
     @Override
     public int compareTo(Node o) {
        return this.cost-o.cost;
     }
-
-    @Override
-    public int hashCode() {
-        return id;
-    }
-
-    /**public void setLowestDiscovered(int lowestDiscovered) {
-        if(this.lowestDiscovered==lowestDiscovered)
-        {
-            this.undecided=true;
-        }
-
-        if (this.lowestDiscovered > lowestDiscovered) {
-            this.lowestDiscovered = lowestDiscovered;
-            this.undecided=false;
-        }
-
-    }**/
 }

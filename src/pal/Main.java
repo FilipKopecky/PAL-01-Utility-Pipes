@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // HashMap<Integer, ArrayList<Edge>> graph = new HashMap<>();
         HashMap<Integer,ArrayList<Node>> graph = new HashMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub10.in")));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub01.in")));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
 
         int numFarms = Integer.parseInt(tokenizer.nextToken());
@@ -39,19 +39,10 @@ public class Main {
             hubs[i] = Integer.parseInt(tokenizer.nextToken());
         }
 
-     /**   HashMap<Integer, ArrayList<Integer>> prices = new HashMap<>();
-        for (int i = 0; i < numFarms; i++) {
-            prices.put(i, new ArrayList<>());
-        }
-        for (int i = 0; i < numHubs; i++) {
-            int[] res = Dijkstra(graph, hubs[i], numFarms);
-            for (int j = 0; j < numFarms; j++) {
-                prices.get(j).add(res[j]);
-            }
-        }**/
 
         Alg alg = new Alg(numFarms, numHubs, hubs, graph);
         alg.getUndecided();
+        alg.removeEdges();
         System.out.println("DONE");
 
     }

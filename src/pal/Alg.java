@@ -24,7 +24,7 @@ public class Alg {
 
     }
 
-    public void getUndecided() {
+    public final void getUndecided() {
         long start = System.nanoTime();
         for (int i = 0; i < numHubs; i++) {
             nodes[hubs[i]].cost = 0;
@@ -32,21 +32,22 @@ public class Alg {
         for (int i = 0; i < numHubs; i++) {
             Dijkstra(hubs[i]);
         }
-        long finish = System.nanoTime();
-        long timeElapsed = finish - start;
-        System.out.println(timeElapsed / 1000000);
+
         int undecided=0;
         for (int i = 0; i < numFarms; i++) {
             if (nodes[i].undecided || (nodes[i].predecessor != null && nodes[i].predecessor.undecided)) {
-               undecided++;
+               nodes[i].undecided=true;
+                undecided++;
             }
         }
         System.out.println("Undecided: "+undecided);
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+        System.out.println(timeElapsed / 1000000);
     }
 
-    public void Dijkstra(int source) {
+    public final void Dijkstra(int source) {
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>();
-        //nodes[source].cost = 0;
         priorityQueue.offer(nodes[source]);
 
         int index;
@@ -63,6 +64,7 @@ public class Alg {
                     nodes[neighborIndex].cost = alt;
                     nodes[neighborIndex].undecided = false;
                     nodes[neighborIndex].predecessor = u;
+                    nodes[neighborIndex].hub=nodes[source];
                     priorityQueue.offer(nodes[neighborIndex]);
                 } else if (alt == nodes[neighborIndex].cost) {
                     nodes[neighborIndex].undecided = true;
@@ -71,6 +73,12 @@ public class Alg {
 
             }
         }
+    }
+
+    public final void removeEdges()
+    {
+        
+
     }
 
 }
