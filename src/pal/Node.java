@@ -7,6 +7,7 @@ class Node implements Comparable<Node> {
     // Member variables of this class
     public int id;
     public int cost;
+    public int hub;
 
 
     // Constructors of this class

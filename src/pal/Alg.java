@@ -1,15 +1,16 @@
 package pal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class Alg {
    private int numFarms;
     private int numHubs;
     private int[] hubs;
-    private ArrayList<ArrayList<Node>> graph;
+    private HashMap<Integer,ArrayList<Node>> graph;
 
-    public Alg(int numFarms, int numHubs,int [] hubs, ArrayList<ArrayList<Node>> graph){
+    public Alg(int numFarms, int numHubs,int [] hubs, HashMap<Integer,ArrayList<Node>> graph){
         this.numFarms=numFarms;
         this.numHubs=numHubs;
         this.hubs=hubs;
@@ -20,13 +21,17 @@ public class Alg {
 
     public void getUndecided()
     {
-
+        long start = System.nanoTime();
         for (int i = 0; i < numHubs; i++) {
             Dijkstra(hubs[i]);
         }
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+        System.out.println(timeElapsed/1000000);
     }
 
     public int[] Dijkstra(int source) {
+
         boolean[] visited = new boolean[numFarms];
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>();
         int[] dist = new int[numFarms];
@@ -36,6 +41,8 @@ public class Alg {
         dist[source] = 0;
 
         priorityQueue.offer(new Node(source, dist[source]));
+
+
 
         while (!priorityQueue.isEmpty()) {
             Node u = priorityQueue.poll();
@@ -53,6 +60,7 @@ public class Alg {
                 }
             }
         }
+
         return dist;
     }
 

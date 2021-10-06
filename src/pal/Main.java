@@ -1,6 +1,7 @@
 package pal;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
@@ -11,15 +12,15 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         // HashMap<Integer, ArrayList<Edge>> graph = new HashMap<>();
-        ArrayList<ArrayList<Node>> graph = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        HashMap<Integer,ArrayList<Node>> graph = new HashMap<>();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub08.in")));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
 
         int numFarms = Integer.parseInt(tokenizer.nextToken());
         int numRoads = Integer.parseInt(tokenizer.nextToken());
 
         for (int i = 0; i < numFarms; i++) {
-            graph.add(new ArrayList<>());
+            graph.put(i,new ArrayList<>());
         }
 
         for (int i = 0; i < numRoads; i++) {
