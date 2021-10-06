@@ -7,7 +7,8 @@ class Node implements Comparable<Node> {
     // Member variables of this class
     public int id;
     public int cost;
-    public int hub;
+    public Node predecessor;
+    public boolean undecided;
 
 
     // Constructors of this class
@@ -22,17 +23,13 @@ class Node implements Comparable<Node> {
         // This keyword refers to current instance itself
         this.id = node;
         this.cost = cost;
+        this.undecided = false;
+        this.predecessor=null;
     }
 
     @Override
     public int compareTo(Node o) {
-        if (this.cost < o.cost)
-            return -1;
-
-        if (this.cost > o.cost)
-            return 1;
-
-        return 0;
+       return this.cost-o.cost;
     }
 
     @Override

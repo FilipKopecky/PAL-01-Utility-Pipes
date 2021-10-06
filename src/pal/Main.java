@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // HashMap<Integer, ArrayList<Edge>> graph = new HashMap<>();
         HashMap<Integer,ArrayList<Node>> graph = new HashMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub08.in")));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub10.in")));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
 
         int numFarms = Integer.parseInt(tokenizer.nextToken());
