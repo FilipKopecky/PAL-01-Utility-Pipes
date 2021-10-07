@@ -1,26 +1,28 @@
 package pal;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
+
 import java.util.*;
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException {
+
         // HashMap<Integer, ArrayList<Edge>> graph = new HashMap<>();
-        HashMap<Integer,ArrayList<Node>> graph = new HashMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("datasets/pub01.in")));
+
+        HashMap<Integer, ArrayList<Node>> graph = new HashMap<>();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
 
         int numFarms = Integer.parseInt(tokenizer.nextToken());
         int numRoads = Integer.parseInt(tokenizer.nextToken());
 
         for (int i = 0; i < numFarms; i++) {
-            graph.put(i,new ArrayList<>());
+            graph.put(i, new ArrayList<>());
         }
 
         for (int i = 0; i < numRoads; i++) {
@@ -39,14 +41,18 @@ public class Main {
             hubs[i] = Integer.parseInt(tokenizer.nextToken());
         }
 
-
         Alg alg = new Alg(numFarms, numHubs, hubs, graph);
         alg.getUndecided();
         alg.removeEdges();
-        System.out.println("DONE");
+        int cost = 0;
+        for (int i = 0; i < numHubs; i++) {
+            cost += alg.prim(hubs[i]);
+        }
+        System.out.println(cost + " " + alg.undecided);
+      //  System.out.println("Cost: " + cost);
+
 
     }
-
 
 
 }

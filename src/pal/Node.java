@@ -1,6 +1,6 @@
 package pal;
 
-import java.util.Comparator;
+
 
 class Node implements Comparable<Node> {
 
